@@ -1,7 +1,6 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-// Import the Card component from the UI library
+import { Card } from "@/components/ui/card"; // Import the Card component from the UI library
 import { cn } from "@/lib/utils"; // Utility function for managing class names
 import { ArrowRight, Code, ImageIcon, MessageSquare, Music, VideoIcon } from "lucide-react"; // Import specific icons from lucide-react
 import { useRouter } from "next/navigation"; // Import the Next.js useRouter hook for navigation
