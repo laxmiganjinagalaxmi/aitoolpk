@@ -1,33 +1,28 @@
 "use client";
 
-
 import * as z from "zod"; 
 import { MessageSquare } from "lucide-react"; 
 import { useForm, SubmitHandler } from "react-hook-form"; 
 import { zodResolver } from "@hookform/resolvers/zod"; 
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"; 
-import { Input } from "@/components/ui/input"; // Custom Input component
-import { Button } from "@/components/ui/button"; // Custom Button component
-import axios from "axios"; // HTTP client
-import { useRouter } from "next/navigation"; // Navigation hook for Next.js
-import { useState } from "react"; // State management
-import { Heading } from "@/components/heading"; // Custom Heading component
-import { formSchema } from "./constants"; // Form validation schema
-import { Empty } from "@/components/empty"; // Empty state component
-import { Loader } from "@/components/loader"; // Loader component
-import { cn } from "@/lib/utils"; // Utility function for classnames
-import { UserAvatar } from "@/components/user-avatar"; // Custom User Avatar component
-import { BotAvatar } from "@/components/bot-avatar"; // Custom Bot Avatar component
-import { v4 as uuidv4 } from 'uuid'; // UUID for unique IDs
+import { Input } from "@/components/ui/input"; 
+import { Button } from "@/components/ui/button"; 
+import axios from "axios"; 
+import { useState } from "react"; 
+import { Heading } from "@/components/heading"; 
+import { formSchema } from "./constants"; 
+import { Empty } from "@/components/empty"; 
+import { Loader } from "@/components/loader"; 
+import { cn } from "@/lib/utils"; 
+import { UserAvatar } from "@/components/user-avatar"; 
+import { BotAvatar } from "@/components/bot-avatar"; 
+import { v4 as uuidv4 } from 'uuid'; 
 
-// Define the ConversationPage component
 const ConversationPage = () => {
-  const router = useRouter(); 
   const [messages, setMessages] = useState<{ id: string; role: string; content: string }[]>([]);
   const [error, setError] = useState<string | null>(null); 
   const [loadingMessageIndex, setLoadingMessageIndex] = useState<number | null>(null); 
   
-  // Use react-hook-form with Zod validation
   const form = useForm<z.infer<typeof formSchema>>({ 
     resolver: zodResolver(formSchema), 
     defaultValues: { prompt: "" } 
@@ -35,7 +30,6 @@ const ConversationPage = () => {
   
   const isLoading = form.formState.isSubmitting; 
 
-  // Define the onSubmit function to handle form submissions
   const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (values) => {
     try {
       setError(null); 
@@ -48,7 +42,6 @@ const ConversationPage = () => {
       setMessages((current) => [...current, userMessage]); 
       setLoadingMessageIndex(messages.length); 
 
-      // Call API to get bot response
       const response = await axios.post("/api/conversation", { 
         messages: [...messages, userMessage] 
       });
@@ -67,7 +60,7 @@ const ConversationPage = () => {
       console.error("Error submitting message:", error);
       setError("Failed to send message. Please try again.");  
     } finally {
-      setLoadingMessageIndex(null); // Reset loading index
+      setLoadingMessageIndex(null); 
     }
   };
 
