@@ -54,7 +54,7 @@ const CodePage = () => {
             });
 
             const botMessageContent = response.data?.content || "No response from bot."; // Get the bot response
-            const botMessage = { // Create bot message object
+            const botMessage = { 
                 id: uuidv4(),
                 role: "assistant",
                 content: botMessageContent,
@@ -97,7 +97,7 @@ const CodePage = () => {
                                         <Input
                                             className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                             disabled={isLoading} // Disable input while loading
-                                            placeholder="Describe your code request here." // Placeholder text
+                                            placeholder="Ask for code in Python, Java, JavaScript, or Dart!." // Placeholder text
                                             {...field} // Register field with react-hook-form
                                         />
                                     </FormControl>
