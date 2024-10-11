@@ -44,6 +44,9 @@
   },
   "rules": {
     "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/no-empty-interface": "off"
+    "@typescript-eslint/no-empty-interface": "off",
+    "prompt": "Create an artistic representation of famous scientists in a lab",
+    "amount": 3,
+    "resolution": "512x512"
   }
 }
