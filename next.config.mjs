@@ -1,8 +1,16 @@
 /** @type {import('next').NextConfig} */
+
+const withPWA = require('next-pwa')({
+    dest: 'public'
+})
+
+
 const nextConfig = {
-    images:{
-        domains:["oaidalleapiprodscus.blob.core.windows.net"]
+    images: {
+        domains: ["oaidalleapiprodscus.blob.core.windows.net"]
     }
 };
 
-export default nextConfig;
+
+
+module.exports = withPWA(nextConfig)
