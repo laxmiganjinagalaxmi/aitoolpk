@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 
     // Using OpenAI SDK v4 to create a chat completion
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gpt-4.1-mini",
       messages, // Pass messages array
     });
 
